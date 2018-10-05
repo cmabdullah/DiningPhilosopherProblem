@@ -9,22 +9,23 @@ public class App {
 
 		try {
 			philosophers = new Philosopher[Constants.NUMBER_OF_PHILOSOPHERS];
-			Chopstick[] chopstick = new Chopstick[Constants.NUMBER_OF_CHOPSTICKS];
+			Chopstick[] chopsticks = new Chopstick[Constants.NUMBER_OF_CHOPSTICKS];
 
 			for (int i = 0; i < Constants.NUMBER_OF_CHOPSTICKS; i++)
-				chopstick[i] = new Chopstick(i);
+				chopsticks[i] = new Chopstick(i);
 
 			executorService = Executors.newFixedThreadPool(Constants.NUMBER_OF_PHILOSOPHERS);
 
 			for (int i = 0; i < Constants.NUMBER_OF_PHILOSOPHERS; i++) {
-				philosophers[i] = new Philosopher(i, chopstick[i], chopstick[(i + 1) % Constants.NUMBER_OF_CHOPSTICKS]);
+				philosophers[i] = new Philosopher(i, chopsticks[i],
+						chopsticks[(i + 1) % Constants.NUMBER_OF_CHOPSTICKS]);
 				executorService.execute(philosophers[i]);
-
-				for (Philosopher p : philosophers) {
-					p.setFull(true);
-				}
 			}
 
+			for (Philosopher p : philosophers) {
+				p.setFull(true);
+			}
+			
 			Thread.sleep(Constants.SIMULATION_RUNNING_TIMES);
 
 		} finally {

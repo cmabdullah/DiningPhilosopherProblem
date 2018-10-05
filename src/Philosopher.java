@@ -47,15 +47,15 @@ public class Philosopher implements Runnable{
 		this.isFull = isFull;
 	}
 	
-	public void think() throws InterruptedException{
+	private void think() throws InterruptedException{
 		System.out.println(this +" is thinking...");
-		Thread.sleep(random.nextInt(1000));
+		Thread.sleep(random.nextInt(100));
 	}
 	
-	public void eat() throws InterruptedException{
+	private void eat() throws InterruptedException{
 		System.out.println(this +" is eating...");
 		this.eatingCounter++;
-		Thread.sleep(random.nextInt(1000));
+		Thread.sleep(random.nextInt(100));
 	}
 	
 	
